@@ -120,15 +120,24 @@ st.divider()
 col1, col2 = st.columns(2)
 
 # Module 1: Learner Demographic Overview
+# Module 1: Learner Demographic Overview
 with col1:
     st.subheader("Gender Participation Ratio")
+
     if not filtered_df.empty:
         gender_dist = filtered_df['Gender'].value_counts().reset_index()
         gender_dist.columns = ['Gender', 'Count']
-        
-        fig_gender = px.pie(gender_dist, names='Gender', values='Count', hole=0.4, 
-                            color_discrete_sequence=px.colors.qualitative.Pastel)
+
+        fig_gender = px.pie(
+            gender_dist,
+            names='Gender',
+            values='Count',
+            hole=0.4,
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+
         st.plotly_chart(fig_gender, use_container_width=True)
+
     else:
         st.info("No data available.")
 
