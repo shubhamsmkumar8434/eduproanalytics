@@ -125,6 +125,7 @@ with col1:
     if not filtered_df.empty:
         gender_dist = filtered_df['Gender'].value_counts().reset_index()
         gender_dist.columns = ['Gender', 'Count']
+        df_gender = pd.DataFrame(gender_dist.items(), columns=['Gender', 'Count'])
         fig_gender = px.pie(gender_dist, names='Gender', values='Count', hole=0.4, 
                             color_discrete_sequence=px.colors.qualitative.Pastel)
         st.plotly_chart(fig_gender, use_container_width=True)
